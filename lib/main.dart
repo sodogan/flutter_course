@@ -43,7 +43,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var _totalScore;
+  var _totalScore =0;
   final _questionList = [
     {
       "question": "What's your favourite color?",
@@ -98,12 +98,13 @@ class _MyAppState extends State<MyApp> {
     }
   ];
 
-  void _answerQuestion() {
-    // _totalScore += score;
+  void _answerQuestion(int score) {
+//  void _answerQuestion() {
+    _totalScore += score;
     setState(() {
       _questionIndex++;
     });
-    //print("Current question index is $_questionIndex");
+    print("Current question index is $_questionIndex");
   }
 
 //reset the quiz!
@@ -112,17 +113,20 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = 0;
       _totalScore = 0;
     });
+    print(
+        "Resetting the quiz to score: $_totalScore and index $_questionIndex");
   }
 
   get totalScore => _totalScore;
 
   //This is to give a certain state at the initialization
+  /*
   @override
   initState() {
-    super.initState();
+    //super.initState();
     // _answer();
   }
-
+*/
 //  Function test = ()=>print("$_questionIndex"));
 
   @override
@@ -149,7 +153,7 @@ class _MyAppState extends State<MyApp> {
             question: _currentQuestion,
             questionIndex: _questionIndex,
             questionList: _questionList,
-            pressHandler: ()=>_answerQuestion(),
+            onPressHandler:_answerQuestion,
           )
         : Result(
             resetHandler: _resetQuiz,
