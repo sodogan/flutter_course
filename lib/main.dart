@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
       ],
     },
     {
-      "question": "What's your favourite instructor?",
+      "question": "Who is your favourite instructor?",
       "answers": [
         {
           "answer": "Max",
@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
   //This is to give a certain state at the initialization
   @override
   initState() {
-    //super.initState();
+    super.initState();
     // _answer();
   }
 
@@ -149,10 +149,11 @@ class _MyAppState extends State<MyApp> {
             question: _currentQuestion,
             questionIndex: _questionIndex,
             questionList: _questionList,
-            pressHandler:  _answerQuestion,
+            pressHandler: ()=>_answerQuestion(),
           )
         : Result(
             resetHandler: _resetQuiz,
+            totalScore: totalScore,
           );
   }
 }
