@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+
 import './answer.dart';
 
 class Quiz extends StatelessWidget {
   final String question;
   final int questionIndex;
   final List questionList;
-  final VoidCallback? pressHandler;
+  final Function pressHandler;
   
   Quiz({
     required this.question,
@@ -18,9 +18,9 @@ class Quiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Function(int) answerList = (index) {
+    List<Answer> Function(int) answerList = (index) {
       return (questionList[index]["answers"] as List).map((answerList) {
-        return new Answer(onPressed: this.pressHandler, title: answerList["answer"]);
+        return new Answer(pressHandler: this.pressHandler, title: answerList["answer"]);
       }).toList();
     };
 

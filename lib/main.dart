@@ -114,10 +114,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  get totalScore => _totalScore;
+
   //This is to give a certain state at the initialization
   @override
   initState() {
-    super.initState();
+    //super.initState();
     // _answer();
   }
 
@@ -147,8 +149,10 @@ class _MyAppState extends State<MyApp> {
             question: _currentQuestion,
             questionIndex: _questionIndex,
             questionList: _questionList,
-            pressHandler: () => _answerQuestion(),
+            pressHandler:  _answerQuestion,
           )
-        : Result(resetHandler: _resetQuiz,);
+        : Result(
+            resetHandler: _resetQuiz,
+          );
   }
 }

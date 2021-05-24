@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-typedef onPressed = void Function();
+typedef pressHandler = void Function();
 
 
 
 class Answer extends StatelessWidget {
-  final VoidCallback? onPressed;
+  final Function pressHandler;
   final String title;
 
-  Answer({required this.onPressed, required this.title});
+  Answer({required this.pressHandler, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Answer extends StatelessWidget {
       child: ElevatedButton(
         style:
             ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
-        onPressed: onPressed,
+        onPressed: ()=>pressHandler(),
         child: Text(this.title),
       ),
     );
