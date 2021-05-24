@@ -98,12 +98,20 @@ class _MyAppState extends State<MyApp> {
     }
   ];
 
-  void _answerQuestion(int score) {
-    _totalScore += score;
+  void _answerQuestion() {
+    // _totalScore += score;
     setState(() {
       _questionIndex++;
     });
     //print("Current question index is $_questionIndex");
+  }
+
+//reset the quiz!
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
   }
 
   //This is to give a certain state at the initialization
@@ -141,6 +149,6 @@ class _MyAppState extends State<MyApp> {
             questionList: _questionList,
             pressHandler: () => _answerQuestion(),
           )
-        : Result();
+        : Result(resetHandler: _resetQuiz,);
   }
 }
