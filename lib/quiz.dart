@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './answer.dart';
+import './question.dart';
 
 class Quiz extends StatelessWidget {
   final String question;
@@ -19,37 +20,24 @@ class Quiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Answer> Function(int) answerList = (index) {
-      var answerList =
-          (questionList[index]["answers"] as List).map((answerList,) {
-        return new Answer(
-            pressHandler:()=>onPressHandler(answerList["score"]), 
+      var answerList = (questionList[index]["answers"] as List).map(
+        (
+          answerList,
+        ) {
+          return new Answer(
+            pressHandler: () => onPressHandler(answerList["score"]),
             title: answerList["answer"],
-            score:answerList["score"] ,);
-      },).toList();
+            score: answerList["score"],
+          );
+        },
+      ).toList();
       print("building the answer list $answerList");
       return answerList;
     };
 
-   
-
-
     return Column(
       children: <Widget>[
-        Container(
-          //width: double.infinity,
-          alignment: Alignment.center,
-          color: Colors.indigo,
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(12.0),
-          child: Padding(
-            padding: EdgeInsets.all(6),
-            child: Text(
-              this.question,
-              style: TextStyle(color: Colors.green, fontSize: 24.0),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
+        Question(question: question),
         ...answerList(questionIndex),
       ],
     );
