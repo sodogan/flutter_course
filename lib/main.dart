@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_course/result.dart';
 import './quiz.dart';
+import './constants.dart';
 
 void main() {
   runApp(MyMainApp());
@@ -43,66 +44,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var _totalScore =0;
-  final _questionList = [
-    {
-      "question": "What's your favourite color?",
-      "answers": [
-        {
-          "answer": "Red",
-          "score": 7,
-        },
-        {
-          "answer": "Green",
-          "score": 10,
-        },
-        {
-          "answer": "Blue",
-          "score": 6,
-        },
-      ],
-    },
-    {
-      "question": "What's your favourite animal?",
-      "answers": [
-        {
-          "answer": "Tiger",
-          "score": 7,
-        },
-        {
-          "answer": "Elephant",
-          "score": 10,
-        },
-        {
-          "answer": "Rabbit",
-          "score": 6,
-        },
-      ],
-    },
-    {
-      "question": "Who is your favourite instructor?",
-      "answers": [
-        {
-          "answer": "Max",
-          "score": 7,
-        },
-        {
-          "answer": "Max",
-          "score": 10,
-        },
-        {
-          "answer": "Max",
-          "score": 6,
-        },
-      ]
-    }
-  ];
+  var _totalScore = 0;
 
   void _answerQuestion(int score) {
-//  void _answerQuestion() {
     _totalScore += score;
     setState(() {
-      _questionIndex++;
+      _questionIndex = _questionIndex + 1;
     });
     print("Current question index is $_questionIndex");
   }
@@ -131,8 +78,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final _currentQuestion = _questionIndex < _questionList.length
-        ? _questionList[_questionIndex]["question"] as String
+    final _currentQuestion = _questionIndex < Constants.questionList.length
+        ? Constants.questionList[_questionIndex]["question"] as String
         : "";
 
 /* Another possible way is if inside the Column!
@@ -148,12 +95,12 @@ class _MyAppState extends State<MyApp> {
                 Result(),
               ]);
   */
-    return _questionIndex < _questionList.length
+    return _questionIndex < Constants.questionList.length
         ? Quiz(
             question: _currentQuestion,
             questionIndex: _questionIndex,
-            questionList: _questionList,
-            onPressHandler:_answerQuestion,
+            questionList: Constants.questionList,
+            onPressHandler: _answerQuestion,
           )
         : Result(
             resetHandler: _resetQuiz,

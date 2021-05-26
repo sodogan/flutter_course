@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course/resultPhrase.dart';
 
 class Result extends StatelessWidget {
   //voidCallback can also be used here
@@ -9,11 +10,6 @@ class Result extends StatelessWidget {
 
   int get finalScore => totalScore;
 
-  //add logic depending on the score
-  String get resultPhrase {
-    return "";
-  }
-
   @override
   Widget build(Object context) {
     return Column(
@@ -21,20 +17,8 @@ class Result extends StatelessWidget {
         SizedBox(
           height: 56,
         ),
-        Container(
-          //width: double.infinity,
-          alignment: Alignment.center,
-          //color: Colors.indigo,
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(12.0),
-          child: Padding(
-            padding: EdgeInsets.all(6),
-            child: Text(
-              "You scored $finalScore points",
-              style: TextStyle(color: Colors.green, fontSize: 24.0),
-              textAlign: TextAlign.center,
-            ),
-          ),
+        ResultPhrase(
+          finalScore: finalScore,
         ),
         Container(
           child: TextButton(
