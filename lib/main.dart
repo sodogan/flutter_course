@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_course/result.dart';
 import './quiz.dart';
 import './constants.dart';
+import './myAppBar.dart';
 
 void main() {
   runApp(MyMainApp());
@@ -11,7 +12,10 @@ void main() {
 class MyMainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyScaffold());
+    return MaterialApp(
+      home: MyScaffold(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
@@ -19,19 +23,7 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: new Text("Sample Quiz"),
-        ),
-        backgroundColor: Colors.cyan,
-        actions: [
-          ElevatedButton(
-              child: new Text("Reset"),
-              onPressed: () {
-                print("Appbar button pressed");
-              }),
-        ],
-      ),
+      appBar: MyAppBar(height: MediaQuery.of(context).size.height * 0.075),
       body: MyApp(),
     );
   }
