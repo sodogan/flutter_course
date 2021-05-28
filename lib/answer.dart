@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-typedef pressHandler = void Function();
+typedef VoidHandler = void Function();
 
 class Answer extends StatelessWidget {
-  final void Function() pressHandler;
+  final VoidHandler pressHandler;
   final String title;
   final int score;
 
